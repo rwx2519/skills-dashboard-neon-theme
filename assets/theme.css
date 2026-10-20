@@ -1,0 +1,114 @@
+/* ============================================================
+   Dashboard Neon Theme v1.0
+   深色霓虹数据大屏配色 · 双主题（默认深色 / body.light 浅色）
+   源自：百事饮品山东行销公司 直营一阶数据大屏（生产验证版）
+   用法：<link rel="stylesheet" href="theme.css">
+   ============================================================ */
+
+/* ---------- 深色主题（默认） ---------- */
+:root{
+  /* 底色与卡片（玻璃拟态） */
+  --bg:#070b14;                    /* 页面底 */
+  --bg2:#0b1220;                   /* 次级面板/tooltip 底 */
+  --card:rgba(15,23,42,.72);       /* 卡片底 */
+  --card2:rgba(15,23,42,.5);       /* 控件/次级卡片底 */
+  /* 描边（霓虹蓝渗透） */
+  --bd:rgba(56,189,248,.16);
+  --bd2:rgba(56,189,248,.32);
+  /* 文字三级 */
+  --t1:#eef4ff;                    /* 主文字 */
+  --t2:#9db4d8;                    /* 次文字 */
+  --t3:#64748b;                    /* 弱化/持平 */
+  /* 霓虹主色族 */
+  --cyan:#22d3ee;                  /* 青primary */
+  --blue:#3b82f6;                  /* 蓝 */
+  --magenta:#e879f9;               /* 洋红（一阶销额主视觉） */
+  --gold:#fbbf24;                  /* 金（目标/达成） */
+  --violet:#a78bfa;                /* 紫 */
+  /* 语义色（中文约定：红涨绿跌） */
+  --up:#ff6b6b;                    /* 涨/正向 = 红 */
+  --down:#34d399;                  /* 跌/负向 = 绿 */
+  /* 光晕 */
+  --glow:0 0 24px rgba(34,211,238,.12);
+}
+
+/* ---------- 浅色主题（body 加 .light 切换） ---------- */
+body.light{
+  --bg:#eef2f7; --bg2:#e2e8f0;
+  --card:rgba(255,255,255,.92); --card2:rgba(255,255,255,.7);
+  --bd:rgba(30,64,175,.14); --bd2:rgba(30,64,175,.3);
+  --t1:#0f172a; --t2:#475569; --t3:#94a3b8;
+  --cyan:#0891b2; --blue:#2563eb; --magenta:#c026d3; --gold:#d97706; --violet:#7c3aed;
+  --up:#dc2626; --down:#059669;
+  --glow:0 0 18px rgba(8,145,178,.08);
+}
+
+/* ---------- 基础 ---------- */
+body{
+  font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--t1); min-height:100vh;
+}
+.num{ font-variant-numeric:tabular-nums; }   /* 数字对齐 */
+.up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--t3)}
+
+/* ---------- 玻璃拟态卡片 ---------- */
+.card{
+  background:var(--card); border:1px solid var(--bd); border-radius:14px;
+  padding:15px 16px; backdrop-filter:blur(8px); box-shadow:var(--glow); min-width:0;
+}
+
+/* ---------- KPI 卡（顶部霓虹光带随 --kc 变色） ---------- */
+.kpi{
+  background:var(--card); border:1px solid var(--bd); border-radius:14px;
+  padding:13px 15px 11px; position:relative; overflow:hidden;
+  backdrop-filter:blur(8px);
+}
+.kpi::before{
+  content:""; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,var(--kc,var(--cyan)),transparent); opacity:.8;
+}
+
+/* ---------- 交互控件 ---------- */
+.pill{
+  border:1px solid var(--bd2); border-radius:999px; background:transparent;
+  color:var(--t2); cursor:pointer; transition:.15s; padding:4px 12px; font-size:12px;
+}
+.pill:hover{ border-color:var(--cyan); color:var(--t1); }
+.pill.on{
+  background:linear-gradient(135deg,rgba(34,211,238,.22),rgba(59,130,246,.22));
+  color:var(--cyan); border-color:var(--cyan); box-shadow:var(--glow);
+}
+select.msel{
+  appearance:none; background:var(--card2); color:var(--t1);
+  border:1px solid var(--bd2); border-radius:8px; font-size:12px;
+  padding:5px 10px; cursor:pointer; outline:none; transition:.15s;
+}
+select.msel:hover, select.msel:focus{ border-color:var(--cyan); box-shadow:var(--glow); }
+
+/* ---------- 进度条（青蓝渐变 + 光晕） ---------- */
+.prog{
+  height:8px; border-radius:4px; background:var(--card2); overflow:hidden; position:relative;
+}
+.prog i{
+  display:block; height:100%; border-radius:3px;
+  background:linear-gradient(90deg,#3b82f6,#22d3ee);
+  box-shadow:0 0 8px rgba(34,211,238,.4);
+}
+/* 洋红变体：.prog.mg i{ background:linear-gradient(90deg,#a855f7,#e879f9); } */
+.prog.mg i{
+  background:linear-gradient(90deg,#a855f7,#e879f9);
+  box-shadow:0 0 10px rgba(232,121,249,.3);
+}
+
+/* ---------- tooltip ---------- */
+.tip{
+  position:fixed; pointer-events:none; background:var(--bg2);
+  border:1px solid var(--bd2); border-radius:8px; padding:8px 11px;
+  font-size:11px; color:var(--t1); z-index:99;
+  box-shadow:0 6px 24px rgba(0,0,0,.4); line-height:1.7; white-space:nowrap;
+}
+
+/* ---------- 动效 ---------- */
+@keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.45} }
+.dot{ width:10px; height:10px; border-radius:50%; background:var(--cyan);
+      box-shadow:0 0 12px var(--cyan); animation:pulse 2.4s infinite; }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard Neon Theme · 演示</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+  body{padding:28px;}
+  h1{font-size:18px;display:flex;align-items:center;gap:10px;margin:0 0 4px}
+  h1 .sub{font-size:12px;color:var(--t2);font-weight:400}
+  .lightbtn{position:fixed;top:20px;right:24px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+  .kpi .k-t{display:flex;justify-content:space-between;font-size:11px;color:var(--t2)}
+  .kpi .k-v{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;margin:6px 0 4px}
+  .kpi .k-s{font-size:11px;color:var(--t3)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .brow{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:12px}
+  .brow .bn{width:64px;color:var(--t2);flex-shrink:0}
+  .brow .bt{flex:1;height:14px;background:var(--card2);border-radius:4px;overflow:hidden}
+  .brow .bf{height:100%;border-radius:4px;background:linear-gradient(90deg,#3b82f6,#22d3ee);box-shadow:0 0 10px rgba(34,211,238,.35)}
+  .brow.mg .bf{background:linear-gradient(90deg,#a855f7,#e879f9);box-shadow:0 0 10px rgba(232,121,249,.3)}
+  .brow .bv{width:80px;text-align:right;font-variant-numeric:tabular-nums;color:var(--cyan);font-weight:600}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  svg{width:100%;height:auto}
+</style>
+</head>
+<body>
+<button class="pill lightbtn" onclick="document.body.classList.toggle('light')">🌗 切换浅色主题</button>
+<h1><span class="dot"></span>Dashboard Neon Theme <span class="sub">深色霓虹 · 玻璃拟态 · 红涨绿跌</span></h1>
+
+<div class="grid">
+  <div class="kpi" style="--kc:var(--magenta)">
+    <div class="k-t"><span>直营一阶销额 · 10月</span><span class="up">▲+12.4%</span></div>
+    <div class="k-v num">86.5万</div>
+    <div class="k-s">环比 <span class="up">▲+9.5万</span> · 累计 1,205万</div>
+  </div>
+  <div class="kpi" style="--kc:var(--cyan)">
+    <div class="k-t"><span>整体销额 · 10月</span><span class="down">▼-1.8%</span></div>
+    <div class="k-v num">408.2万</div>
+    <div class="k-s">一阶占比 21.2% · <span class="gold" style="color:var(--gold)">目标 25%</span></div>
+  </div>
+  <div class="kpi" style="--kc:var(--gold)">
+    <div class="k-t"><span>开户 · 当月（开发）</span></div>
+    <div class="k-v num">18<span style="font-size:14px;color:var(--t3)">/242 家</span></div>
+    <div class="prog" style="margin-top:6px"><i style="width:7.4%"></i></div>
+    <div class="k-s" style="margin-top:4px">达成 7.4% · 目标 242</div>
+  </div>
+  <div class="kpi" style="--kc:var(--up)">
+    <div class="k-t"><span>长期未交易 · 风险</span><span class="down">▼-1 家</span></div>
+    <div class="k-v num">193<span style="font-size:14px;color:var(--t3)"> 家</span></div>
+    <div class="k-s">改善池 82 · 已改善 3（3.7%）</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="card">
+    <div style="font-size:13px;color:var(--t2);margin-bottom:6px">营业部销额进度（洋红=核心层）</div>
+    <div class="brow"><span class="bn">青岛</span><div class="bt"><div class="bf" style="width:72%"></div></div><span class="bv num">328万</span></div>
+    <div class="brow mg"><span class="bn">一阶层</span><div class="bt"><div class="bf" style="width:48%"></div></div><span class="bv num">96万</span></div>
+    <div class="brow"><span class="bn">济南</span><div class="bt"><div class="bf" style="width:61%"></div></div><span class="bv num">287万</span></div>
+    <div class="brow"><span class="bn">鲁中</span><div class="bt"><div class="bf" style="width:35%"></div></div><span class="bv num">154万</span></div>
+    <div class="chips">
+      <button class="pill on">10月</button><button class="pill">9月</button>
+      <button class="pill">累计</button>
+      <span class="pill" style="cursor:default"><span class="up">▲ 涨 3 部</span> · <span class="down">▼ 跌 2 部</span></span>
+    </div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:var(--t2);margin-bottom:6px">一阶占比走势（面积渐变 + 金色目标线）</div>
+    <svg viewBox="0 0 400 120">
+      <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#22d3ee" stop-opacity=".28"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+      </linearGradient></defs>
+      <g stroke="#1e293b" stroke-width="1">
+        <line x1="0" y1="30" x2="400" y2="30" stroke-dasharray="3 5"/>
+        <line x1="0" y1="60" x2="400" y2="60" stroke-dasharray="3 5"/>
+        <line x1="0" y1="90" x2="400" y2="90" stroke-dasharray="3 5"/>
+        <line x1="0" y1="112" x2="400" y2="112"/>
+      </g>
+      <path d="M0,95 L44,88 L89,90 L133,72 L178,66 L222,58 L267,60 L311,42 L356,38 L400,44 L400,112 L0,112 Z" fill="url(#area)"/>
+      <path d="M0,95 L44,88 L89,90 L133,72 L178,66 L222,58 L267,60 L311,42 L356,38 L400,44" fill="none" stroke="#22d3ee" stroke-width="2"/>
+      <line x1="0" y1="40" x2="400" y2="40" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6 4" opacity=".8"/>
+      <text x="404" y="44" fill="#fbbf24" font-size="10" opacity=".85">25%</text>
+    </svg>
+  </div>
+</div>
+</body>
+</html>
